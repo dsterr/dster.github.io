@@ -91,4 +91,75 @@
     }
 
     footer {
-      border
+      border-top: 1px solid #e5e7eb;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: #f9fafb;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <div>
+        <h1 class="site-title">My Website</h1>
+        <p class="site-subtitle">A simple site hosted with GitHub Pages</p>
+      </div>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="activities.html">Activities</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+      <h1>About This Website</h1>
+      <p>
+        This website was created as a simple, clean space to share resources, activities,
+        and information. It’s built using GitHub Pages, which allows the entire site to be
+        hosted for free and updated easily.
+      </p>
+
+      <p>
+        The goal of this site is to provide a clear, accessible hub for anyone who wants to
+        explore the content—whether that’s an activity pack, a project, or a collection of
+        useful materials.
+      </p>
+
+      <p>
+        Everything here is designed to be lightweight, fast, and easy to navigate. As the
+        site grows, more pages and resources will be added.
+      </p>
+
+      <h2>What You’ll Find Here</h2>
+      <p>
+        • A homepage introducing the project  
+        • Activity or resource pages  
+        • Contact or credit information  
+        • Additional sections as the site expands  
+      </p>
+
+      <h2>Why GitHub Pages?</h2>
+      <p>
+        GitHub Pages is ideal for simple websites like this one. It’s reliable, free, and
+        integrates directly with version control—making updates quick and transparent.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> My Website. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
