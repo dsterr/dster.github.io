@@ -95,4 +95,56 @@
       color: var(--muted);
       background: #f9fafb;
     }
+
+        /* Dropdown container */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    /* Dropdown button */
+    .dropbtn {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: var(--fg);
+      font-weight: 500;
+      cursor: pointer;
+    }
+    
+    /* Dropdown menu (hidden by default) */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: var(--card);
+      min-width: 180px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
+      border-radius: var(--radius);
+      padding: 0.5rem 0;
+      z-index: 20;
+    }
+    
+    /* Dropdown links */
+    .dropdown-content a {
+      display: block;
+      padding: 0.6rem 1rem;
+      text-decoration: none;
+      color: var(--fg);
+      font-size: 0.95rem;
+    }
+    
+    .dropdown-content a:hover {
+      background: #f3f4f6;
+      color: var(--accent);
+    }
+    
+    /* Show dropdown on hover */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    /* Highlight Blogs link on hover */
+    .dropdown:hover .dropbtn {
+      color: var(--accent);
+    }
+
   </style>
