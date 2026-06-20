@@ -20,6 +20,15 @@ title: Activities
       <h3>Filter Activities</h3>
     
       <label style="margin-right:1.5rem;">
+        Search:
+        <input type="text" id="filter-search" placeholder="Search activities..." />
+      </label>
+      
+      <button id="clear-filters" style="margin-left:1rem;">
+        Clear Filters
+      </button>
+      
+      <label style="margin-right:1.5rem;">
         Category:
         <select id="filter-category">
           <option value="">All</option>
@@ -92,11 +101,14 @@ title: Activities
     const difficultyFilter = document.getElementById('filter-difficulty');
     const durationFilter = document.getElementById('filter-duration');
     const durationValue = document.getElementById('duration-value');
+    const searchFilter = document.getElementById('filter-search');
+    const clearBtn = document.getElementById('clear-filters');
   
     function applyFilters() {
       const cat = categoryFilter.value.toLowerCase();
       const diff = difficultyFilter.value.toLowerCase();
       const maxDuration = parseInt(durationFilter.value);
+      const search = searchFilter.value.toLowerCase();
   
       durationValue.textContent = `Up to ${maxDuration} mins`;
   
@@ -104,15 +116,19 @@ title: Activities
         const cardCat = card.dataset.category.toLowerCase();
         const cardDiff = card.dataset.difficulty.toLowerCase();
         const cardDur = parseInt(card.dataset.duration);
+        const cardText = card.dataset.text;
   
         const matchCat = !cat || cardCat.includes(cat);
         const matchDiff = !diff || cardDiff === diff;
         const matchDur = cardDur <= maxDuration;
+        const matchSearch = !search || cardText.includes(search);
   
-        if (matchCat && matchDiff && matchDur) {
-          card.style.display = "block";
+        const visible = matchCat && matchDiff && matchDur && matchSearch;
+  
+        if (visible) {
+          card.classList.remove('hidden');
         } else {
-          card.style.display = "none";
+          card.classList.add('hidden');
         }
       });
     }
@@ -120,6 +136,15 @@ title: Activities
     categoryFilter.addEventListener('change', applyFilters);
     difficultyFilter.addEventListener('change', applyFilters);
     durationFilter.addEventListener('input', applyFilters);
+    searchFilter.addEventListener('input', applyFilters);
+  
+    clearBtn.addEventListener('click', () => {
+      categoryFilter.value = "";
+      difficultyFilter.value = "";
+      durationFilter.value = durationFilter.max;
+      searchFilter.value = "";
+      applyFilters();
+    });
   </script>
 </body>
 </html>
