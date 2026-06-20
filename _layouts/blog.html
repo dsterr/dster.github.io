@@ -1,69 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>{{ page.title }} • My Website</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
+---
+layout: default
+---
 
-<body>
+<article class="card">
 
-  <header>
-    {% include header.html %}
-  </header>
+  {% if page.image %}
+    <img src="{{ page.image }}" alt="{{ page.title }}" style="width:100%; border-radius: var(--radius); margin-bottom: 1.5rem;">
+  {% endif %}
 
-  <main>
+  <h1>{{ page.title }}</h1>
 
-    <article class="card">
+  <!-- Date + Reading Time -->
+  <p class="post-meta" style="color: var(--muted); margin-top: -0.5rem;">
+    {{ page.date | date: "%-d %B %Y" }} ·
+    {% assign words = content | number_of_words %}
+    {% assign minutes = words | divided_by:200 | ceil %}
+    {{ minutes }} min read
+  </p>
 
-      {% if page.image %}
-        <img src="{{ page.image }}" alt="{{ page.title }}" class="post-image" style="width:100%; border-radius: var(--radius); margin-bottom: 1.5rem;">
-      {% endif %}
+  <div class="post-content">
+    {{ content }}
+  </div>
 
-      <h1>{{ page.title }}</h1>
+</article>
 
-      <!-- ⭐ Date + Reading Time -->
-      <p class="post-meta" style="color: var(--muted); margin-top: -0.5rem;">
-        {{ page.date | date: "%-d %B %Y" }} · 
-        {% assign words = content | number_of_words %}
-        {% assign minutes = words | divided_by:200 | ceil %}
-        {{ minutes }} min read
-      </p>
+<!-- Next / Previous Navigation -->
+<div style="margin-top: 2rem; display: flex; justify-content: space-between;">
 
-      <div class="post-content">
-        {{ content }}
-      </div>
+  {% if page.previous %}
+    <a href="{{ page.previous.url }}" style="text-decoration:none; color: var(--accent);">
+      ← {{ page.previous.title }}
+    </a>
+  {% else %}
+    <span></span>
+  {% endif %}
 
-    </article>
+  {% if page.next %}
+    <a href="{{ page.next.url }}" style="text-decoration:none; color: var(--accent);">
+      {{ page.next.title }} →
+    </a>
+  {% endif %}
 
-    <!-- ⭐ Next / Previous Navigation -->
-    <div style="margin-top: 2rem; display: flex; justify-content: space-between;">
-
-      {% if page.previous %}
-        <a href="{{ page.previous.url }}" style="text-decoration:none; color: var(--accent);">
-          ← {{ page.previous.title }}
-        </a>
-      {% else %}
-        <span></span>
-      {% endif %}
-
-      {% if page.next %}
-        <a href="{{ page.next.url }}" style="text-decoration:none; color: var(--accent);">
-          {{ page.next.title }} →
-        </a>
-      {% endif %}
-
-    </div>
-
-  </main>
-
-  <footer>
-    {% include footer.html %}
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-
-</body>
-</html>
+</div>
