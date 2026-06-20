@@ -15,18 +15,24 @@ title: Activities
   <main>
     <h1>Activities</h1>
     <p>Here you’ll find a collection of activities, resources, and interactive ideas. You can expand this page with links to individual activity pages or downloadable files.</p>
+
+    <!-- FILTER BLOCK -->
     <div id="filters" class="card" style="margin-bottom: 1.5rem;">
       <h3>Filter Activities</h3>
-    
-      <label style="margin-right:1.5rem;">
-        Search:
-        <input type="text" id="filter-search" placeholder="Search activities..." />
-      </label>
-    
-      <button id="clear-filters" style="margin-left:1rem;">
-        Clear Filters
-      </button>
-    
+
+      <!-- First row: Search + Clear -->
+      <div style="display:flex; align-items:center; flex-wrap:wrap; gap:1rem;">
+        <label>
+          Search:
+          <input type="text" id="filter-search" placeholder="Search activities..." />
+        </label>
+
+        <button id="clear-filters">
+          Clear Filters
+        </button>
+      </div>
+
+      <!-- Second row: Category + Difficulty + Duration -->
       <div style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:1.5rem;">
         <label>
           Category:
@@ -40,7 +46,7 @@ title: Activities
             {% endfor %}
           </select>
         </label>
-    
+
         <label>
           Difficulty:
           <select id="filter-difficulty">
@@ -50,7 +56,7 @@ title: Activities
             <option value="Hard">Hard</option>
           </select>
         </label>
-    
+
         <label>
           Duration (minutes):
           <input type="range" id="filter-duration" min="0" max="150" value="150" step="5" />
@@ -59,6 +65,7 @@ title: Activities
       </div>
     </div>
 
+    <!-- ACTIVITIES LIST -->
     <div class="cards">
       {% for post in site.activity %}
         <div class="card activity-card"
@@ -93,26 +100,13 @@ title: Activities
     {% include footer.html %}
   </footer>
 
+  <!-- YEAR -->
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    const year = document.getElementById("year");
+    if (year) year.textContent = new Date().getFullYear();
   </script>
 
-  <script>
-    // Auto-apply category filter from URL parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const categoryFromURL = urlParams.get("category");
-  
-    if (categoryFromURL) {
-      const categoryFilter = document.getElementById("filter-category");
-      categoryFilter.value = categoryFromURL;
-  
-      // Apply filters immediately
-      window.addEventListener("DOMContentLoaded", () => {
-        applyFilters();
-      });
-    }
-  </script>
-
+  <!-- FILTERING + URL SYNC -->
   <script>
     const cards = document.querySelectorAll('.activity-card');
 
@@ -123,6 +117,39 @@ title: Activities
     const searchFilter = document.getElementById('filter-search');
     const clearBtn = document.getElementById('clear-filters');
 
+    /* ---------------------------
+       AUTO-APPLY FILTERS FROM URL
+    ---------------------------- */
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.has("category")) categoryFilter.value = params.get("category");
+    if (params.has("difficulty")) difficultyFilter.value = params.get("difficulty");
+    if (params.has("duration")) durationFilter.value = params.get("duration");
+    if (params.has("search")) searchFilter.value = params.get("search");
+
+    if ([...params.keys()].length > 0) {
+      window.addEventListener("DOMContentLoaded", applyFilters);
+    }
+
+    /* ---------------------------
+       UPDATE URL WHEN FILTERS CHANGE
+    ---------------------------- */
+    function updateURL() {
+      const params = new URLSearchParams();
+
+      if (categoryFilter.value) params.set("category", categoryFilter.value);
+      if (difficultyFilter.value) params.set("difficulty", difficultyFilter.value);
+      if (durationFilter.value !== durationFilter.max)
+        params.set("duration", durationFilter.value);
+      if (searchFilter.value) params.set("search", searchFilter.value);
+
+      const newURL = window.location.pathname + "?" + params.toString();
+      history.replaceState({}, "", newURL);
+    }
+
+    /* ---------------------------
+       MAIN FILTER FUNCTION
+    ---------------------------- */
     function applyFilters() {
       const cat = categoryFilter.value.toLowerCase();
       const diff = difficultyFilter.value.toLowerCase();
@@ -146,8 +173,13 @@ title: Activities
 
         card.style.display = visible ? "block" : "none";
       });
+
+      updateURL();
     }
 
+    /* ---------------------------
+       EVENT LISTENERS
+    ---------------------------- */
     categoryFilter.addEventListener('change', applyFilters);
     difficultyFilter.addEventListener('change', applyFilters);
     durationFilter.addEventListener('input', applyFilters);
@@ -158,6 +190,9 @@ title: Activities
       difficultyFilter.value = "";
       durationFilter.value = durationFilter.max;
       searchFilter.value = "";
+
+      history.replaceState({}, "", window.location.pathname);
+
       applyFilters();
     });
   </script>
