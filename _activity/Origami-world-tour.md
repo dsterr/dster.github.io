@@ -8,7 +8,7 @@ categories:
   - Cultural Awareness
 
 difficulty: Easy
-duration: 20–30 minutes
+duration: 30
 
 materials:
   - Square paper sheets
