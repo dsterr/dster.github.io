@@ -253,38 +253,69 @@
       }
     }
 
-    .activities-layout {
-      display: flex;
-      gap: 2rem;
+    .filter-toggle {
+      padding: 0.75rem 1.25rem;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 1rem;
     }
     
-    .filters-sidebar {
-      width: 260px;
+    .filter-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 900;
+    }
+    
+    .filter-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .filter-drawer {
+      position: fixed;
+      top: 0;
+      right: -350px;
+      width: 320px;
+      height: 100vh;
+      background: #fff;
       padding: 1.5rem;
-      background: var(--card-bg, #f7f7f7);
-      border-radius: var(--radius, 8px);
-      height: fit-content;
+      box-shadow: -4px 0 12px rgba(0,0,0,0.15);
+      transition: right 0.3s ease;
+      z-index: 1000;
+      overflow-y: auto;
     }
     
-    .filters-sidebar label {
+    .filter-drawer.active {
+      right: 0;
+    }
+    
+    .filter-drawer label {
       display: block;
       margin-bottom: 1rem;
     }
     
-    .filters-sidebar input,
-    .filters-sidebar select {
+    .filter-drawer input,
+    .filter-drawer select {
       width: 100%;
       margin-top: 0.25rem;
     }
     
-    #clear-filters {
-      margin: 0.5rem 0 1rem 0;
-      width: 100%;
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      float: right;
+      cursor: pointer;
+      margin-bottom: 1rem;
     }
     
-    .activities-list {
-      flex: 1;
-    }
   </style>
 </head>
 
