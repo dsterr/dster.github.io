@@ -1,7 +1,6 @@
 ---
 layout: activity
 title: Origami World Tour
-image: /assets/images/origami.jpg
 
 categories:
   - Creativity
@@ -16,3 +15,5 @@ materials:
   - Instruction cards (optional)
 ---
 A creative activity exploring global cultures through simple origami designs. Participants learn folds inspired by different countries and share what they create.
+
+
