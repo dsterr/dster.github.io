@@ -12,9 +12,9 @@
       --muted: #6b7280;
       --radius: 12px;
     }
-
+    
     * { box-sizing: border-box; }
-
+    
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -22,7 +22,9 @@
       color: var(--fg);
       line-height: 1.6;
     }
-
+    
+    /* ---------------- HEADER ---------------- */
+    
     header {
       background: var(--card);
       border-bottom: 1px solid #e5e7eb;
@@ -31,26 +33,29 @@
       top: 0;
       z-index: 10;
     }
-
+    
     .header-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: nowrap;
       width: 100%;
+      gap: 1rem;
     }
-
+    
     .site-title {
       margin: 0;
       font-size: 1.4rem;
       font-weight: 700;
     }
-
+    
     .site-subtitle {
       margin: 0.15rem 0 0;
       font-size: 0.9rem;
       color: var(--muted);
     }
+    
+    /* NAVIGATION */
     
     .nav-row {
       display: flex;
@@ -59,7 +64,7 @@
       flex-wrap: nowrap;
       white-space: nowrap;
     }
-
+    
     .nav-row a,
     .nav-row .dropdown,
     .social-icons,
@@ -75,140 +80,29 @@
       font-weight: 500;
       transition: color 0.15s;
     }
-
+    
     nav a:hover {
       color: var(--accent);
     }
-
-    main {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1.5rem 3rem;
-    }
-
-    .hero {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 2rem 1.75rem;
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
-      margin-bottom: 2rem;
-    }
-
-    .hero h1 {
-      margin-top: 0;
-      font-size: 2rem;
-    }
-
-    .hero p {
-      margin-bottom: 0.75rem;
-      color: var(--muted);
-    }
-
-    .hero .cta {
-      margin-top: 1.25rem;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 0.7rem 1.4rem;
-      border-radius: 999px;
-      border: none;
-      background: var(--accent);
-      color: white;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      cursor: pointer;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
-      transition: transform 0.08s ease-out, box-shadow 0.08s ease-out, background 0.12s;
-    }
-
-    .button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
-      background: #1d4ed8;
-    }
-
-    .section {
-      margin-bottom: 2rem;
-    }
-
-    .section h2 {
-      margin-bottom: 0.5rem;
-      font-size: 1.4rem;
-    }
-
-    .section p {
-      color: var(--muted);
-      margin-top: 0;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.25rem;
-      margin-top: 1.25rem;
-    }
-
-    .card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.2rem;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-    }
-
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 0.4rem;
-      font-size: 1.05rem;
-    }
-
-    .card p {
-      margin: 0;
-      font-size: 0.92rem;
-      color: var(--muted);
-    }
-
-    h1 {
-      margin-top: 0;
-      font-size: 2rem;
-    }
-
-    p {
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    footer {
-      border-top: 1px solid #e5e7eb;
-      padding: 1.5rem;
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--muted);
-      background: #f9fafb;
-    }
-
-        /* Dropdown container */
+    
+    /* ---------------- DROPDOWNS ---------------- */
+    
     .dropdown {
       position: relative;
       display: inline-block;
     }
     
-    /* Dropdown button */
     .dropbtn {
-      /* margin-left: 1rem; */
       text-decoration: none;
       color: var(--fg);
       font-weight: 500;
       cursor: pointer;
     }
     
-    /* Dropdown menu (hidden by default) */
     .dropdown-content {
       display: none;
       position: absolute;
-      right: 0;          /* Align the menu to the right edge */
-      left: auto;        /* Prevent left alignment */
+      right: 0;
       background: var(--card);
       min-width: 180px;
       box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
@@ -217,7 +111,6 @@
       z-index: 20;
     }
     
-    /* Dropdown links */
     .dropdown-content a {
       display: block;
       padding: 0.6rem 1rem;
@@ -231,26 +124,16 @@
       color: var(--accent);
     }
     
-    /* Show dropdown on hover */
     .dropdown:hover .dropdown-content {
       display: block;
     }
     
-    /* Highlight Blogs link on hover */
     .dropdown:hover .dropbtn {
       color: var(--accent);
     }
-
-    @media (max-width: 600px) {
-      .hero {
-        padding: 1.5rem 1.25rem;
-      }
-
-      .hero h1 {
-        font-size: 1.6rem;
-      }
-    }
-
+    
+    /* ---------------- SOCIAL ICONS ---------------- */
+    
     .icon-img {
       width: 20px;
       height: 20px;
@@ -263,7 +146,13 @@
       align-items: center;
       gap: 0.5rem;
     }
-
+    
+    .social-icons a:hover .icon-img {
+      opacity: 0.7;
+    }
+    
+    /* ---------------- SEARCH EXPAND ---------------- */
+    
     .search-wrapper {
       display: inline-block;
       position: relative;
@@ -271,6 +160,12 @@
     }
     
     .search-expand {
+      display: flex;
+      align-items: center;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 0.2rem;
+      transition: all 0.25s ease;
       flex-shrink: 0;
     }
     
@@ -316,6 +211,216 @@
     .search-expand:focus-within .search-img {
       opacity: 1;
     }
-
-
+    
+    /* ---------------- MAIN CONTENT ---------------- */
+    
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1.5rem 3rem;
+    }
+    
+    .hero {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      margin-bottom: 2rem;
+    }
+    
+    .hero h1 {
+      margin-top: 0;
+      font-size: 2rem;
+    }
+    
+    .hero p {
+      margin-bottom: 0.75rem;
+      color: var(--muted);
+    }
+    
+    .hero .cta {
+      margin-top: 1.25rem;
+    }
+    
+    .button {
+      display: inline-block;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+      transition: transform 0.08s ease-out, box-shadow 0.08s ease-out, background 0.12s;
+    }
+    
+    .button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+      background: #1d4ed8;
+    }
+    
+    .section {
+      margin-bottom: 2rem;
+    }
+    
+    .section h2 {
+      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+    }
+    
+    .section p {
+      color: var(--muted);
+      margin-top: 0;
+    }
+    
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+    
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.2rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    }
+    
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+      font-size: 1.05rem;
+    }
+    
+    .card p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+    
+    /* Activity filtering animations */
+    .activity-card {
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .activity-card.hidden {
+      opacity: 0;
+      transform: scale(0.98);
+      pointer-events: none;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden;
+    }
+    
+    /* ---------------- FILTER DRAWER ---------------- */
+    
+    .filter-toggle {
+      padding: 0.75rem 1.25rem;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+    
+    .filter-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 900;
+    }
+    
+    .filter-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .filter-drawer {
+      position: fixed;
+      top: 0;
+      right: -350px;
+      width: 320px;
+      height: 100vh;
+      background: #fff;
+      padding: 1.5rem;
+      box-shadow: -4px 0 12px rgba(0,0,0,0.15);
+      transition: right 0.3s ease;
+      z-index: 1000;
+      overflow-y: auto;
+    }
+    
+    .filter-drawer.active {
+      right: 0;
+    }
+    
+    .filter-drawer label {
+      display: block;
+      margin-bottom: 1rem;
+    }
+    
+    .filter-drawer input,
+    .filter-drawer select {
+      width: 100%;
+      margin-top: 0.25rem;
+    }
+    
+    .clear-btn {
+      width: 100%;
+      margin: 0.5rem 0 1rem 0;
+    }
+    
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      float: right;
+      cursor: pointer;
+    }
+    
+    /* ---------------- TYPOGRAPHY ---------------- */
+    
+    h1 {
+      margin-top: 0;
+      font-size: 2rem;
+    }
+    
+    p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    
+    /* ---------------- FOOTER ---------------- */
+    
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: #f9fafb;
+    }
+    
+    /* ---------------- RESPONSIVE ---------------- */
+    
+    @media (max-width: 600px) {
+      .hero {
+        padding: 1.5rem 1.25rem;
+      }
+    
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+    }
   </style>
