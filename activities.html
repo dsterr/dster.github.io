@@ -63,7 +63,8 @@ title: Activities
         <div class="card activity-card"
              data-category="{{ post.categories | join: ',' }}"
              data-difficulty="{{ post.difficulty }}"
-             data-duration="{{ post.duration }}">
+             data-duration="{{ post.duration }}"
+             data-text="{{ post.title | downcase }} {{ post.excerpt | strip_html | downcase }}">
           
           <h3>{{ post.title }}</h3>
     
