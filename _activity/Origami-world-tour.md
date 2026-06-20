@@ -1,9 +1,6 @@
 ---
-layout: blog
 title: Origami World Tour
-image: /images/LS_Summer25_Gr-11.jpg   # optional
+layout: default
 ---
 
-Okay, turns out this is quite simple to post into a blog like this.
-
-This is neat.
+A creative activity exploring global cultures through simple origami designs.
