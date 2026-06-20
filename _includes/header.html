@@ -11,11 +11,15 @@
   <div class="dropdown">
     <a class="dropbtn" href="/activities.html">Activities ▾</a>
     <div class="dropdown-content">
-      {% for activity in site.activity limit:5 %}
-        <a href="{{ activity.url }}">{{ activity.title }}</a>
+      {% assign all_categories = site.activity | map: "categories" | uniq | sort %}
+      {% for group in all_categories %}
+        {% for cat in group %}
+          <a href="/activities.html?category={{ cat | url_encode }}">{{ cat }}</a>
+        {% endfor %}
       {% endfor %}
     </div>
   </div>
+
     
   <div class="dropdown">
     <a class="dropbtn" href="/blogs.html">Blogs ▾</a>
