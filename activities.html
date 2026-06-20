@@ -13,29 +13,22 @@ title: Activities
   </header>
 
   <main>
-    <p style="color:red;">TEST — If you see this, the correct file is loading.</p>
     <h1>Activities</h1>
     <p>Here you’ll find a collection of activities, resources, and interactive ideas. You can expand this page with links to individual activity pages or downloadable files.</p>
 
-    <!-- Filter & Sort Button -->
-    <button id="open-filters" class="filter-toggle">Filter & Sort</button>
+    <div id="filters" class="card" style="margin-bottom: 1.5rem;">
+      <h3>Filter Activities</h3>
 
-    <!-- Overlay -->
-    <div id="filter-overlay" class="filter-overlay"></div>
-
-    <!-- Slide-in Drawer -->
-    <div id="filter-drawer" class="filter-drawer">
-      <button id="close-filters" class="close-btn">✕</button>
-      <h3>Filter & Sort</h3>
-
-      <label>
+      <label style="margin-right:1.5rem;">
         Search:
         <input type="text" id="filter-search" placeholder="Search activities..." />
       </label>
 
-      <button id="clear-filters" class="clear-btn">Clear Filters</button>
+      <button id="clear-filters" style="margin-left:1rem;">
+        Clear Filters
+      </button>
 
-      <label>
+      <label style="margin-right:1.5rem;">
         Category:
         <select id="filter-category">
           <option value="">All</option>
@@ -48,7 +41,7 @@ title: Activities
         </select>
       </label>
 
-      <label>
+      <label style="margin-right:1.5rem;">
         Difficulty:
         <select id="filter-difficulty">
           <option value="">All</option>
@@ -58,14 +51,13 @@ title: Activities
         </select>
       </label>
 
-      <label>
+      <label style="margin-right:1.5rem;">
         Duration (minutes):
         <input type="range" id="filter-duration" min="0" max="150" value="150" step="5" />
         <span id="duration-value">Up to 150 mins</span>
       </label>
     </div>
 
-    <!-- Activities List -->
     <div class="cards">
       {% for post in site.activity %}
         <div class="card activity-card"
@@ -100,12 +92,10 @@ title: Activities
     {% include footer.html %}
   </footer>
 
-  <!-- YEAR SCRIPT -->
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
-  <!-- FILTERING LOGIC -->
   <script>
     const cards = document.querySelectorAll('.activity-card');
 
@@ -152,29 +142,6 @@ title: Activities
       durationFilter.value = durationFilter.max;
       searchFilter.value = "";
       applyFilters();
-    });
-  </script>
-
-  <!-- DRAWER OPEN/CLOSE LOGIC -->
-  <script>
-    const drawer = document.getElementById('filter-drawer');
-    const overlay = document.getElementById('filter-overlay');
-    const openBtn = document.getElementById('open-filters');
-    const closeBtn = document.getElementById('close-filters');
-
-    openBtn.addEventListener('click', () => {
-      drawer.classList.add('active');
-      overlay.classList.add('active');
-    });
-
-    closeBtn.addEventListener('click', () => {
-      drawer.classList.remove('active');
-      overlay.classList.remove('active');
-    });
-
-    overlay.addEventListener('click', () => {
-      drawer.classList.remove('active');
-      overlay.classList.remove('active');
     });
   </script>
 
