@@ -1,0 +1,4 @@
+collections:
+  activity:
+    output: true
+    permalink: /activity/:name/
