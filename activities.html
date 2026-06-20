@@ -112,11 +112,8 @@ title: Activities
 
         const visible = matchCat && matchDiff && matchDur;
 
-        if (visible) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
+      card.style.display = visible ? "block" : "none";
+
       });
     }
 
