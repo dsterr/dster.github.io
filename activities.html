@@ -15,47 +15,48 @@ title: Activities
   <main>
     <h1>Activities</h1>
     <p>Here you’ll find a collection of activities, resources, and interactive ideas. You can expand this page with links to individual activity pages or downloadable files.</p>
-
     <div id="filters" class="card" style="margin-bottom: 1.5rem;">
       <h3>Filter Activities</h3>
-
+    
       <label style="margin-right:1.5rem;">
         Search:
         <input type="text" id="filter-search" placeholder="Search activities..." />
       </label>
-
+    
       <button id="clear-filters" style="margin-left:1rem;">
         Clear Filters
       </button>
-
-      <label style="margin-right:1.5rem;">
-        Category:
-        <select id="filter-category">
-          <option value="">All</option>
-          {% assign all_categories = site.activity | map: "categories" | uniq | sort %}
-          {% for group in all_categories %}
-            {% for cat in group %}
-              <option value="{{ cat }}">{{ cat }}</option>
+    
+      <div style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:1.5rem;">
+        <label>
+          Category:
+          <select id="filter-category">
+            <option value="">All</option>
+            {% assign all_categories = site.activity | map: "categories" | uniq | sort %}
+            {% for group in all_categories %}
+              {% for cat in group %}
+                <option value="{{ cat }}">{{ cat }}</option>
+              {% endfor %}
             {% endfor %}
-          {% endfor %}
-        </select>
-      </label>
-
-      <label style="margin-right:1.5rem;">
-        Difficulty:
-        <select id="filter-difficulty">
-          <option value="">All</option>
-          <option value="Easy">Easy</option>
-          <option value="Medium">Medium</option>
-          <option value="Hard">Hard</option>
-        </select>
-      </label>
-
-      <label style="margin-right:1.5rem;">
-        Duration (minutes):
-        <input type="range" id="filter-duration" min="0" max="150" value="150" step="5" />
-        <span id="duration-value">Up to 150 mins</span>
-      </label>
+          </select>
+        </label>
+    
+        <label>
+          Difficulty:
+          <select id="filter-difficulty">
+            <option value="">All</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+        </label>
+    
+        <label>
+          Duration (minutes):
+          <input type="range" id="filter-duration" min="0" max="150" value="150" step="5" />
+          <span id="duration-value">Up to 150 mins</span>
+        </label>
+      </div>
     </div>
 
     <div class="cards">
