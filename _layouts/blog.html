@@ -22,8 +22,12 @@
 
       <h1>{{ page.title }}</h1>
 
+      <!-- ⭐ Date + Reading Time -->
       <p class="post-meta" style="color: var(--muted); margin-top: -0.5rem;">
-        {{ page.date | date: "%-d %B %Y" }}
+        {{ page.date | date: "%-d %B %Y" }} · 
+        {% assign words = content | number_of_words %}
+        {% assign minutes = words | divided_by:200 | ceil %}
+        {{ minutes }} min read
       </p>
 
       <div class="post-content">
@@ -31,6 +35,25 @@
       </div>
 
     </article>
+
+    <!-- ⭐ Next / Previous Navigation -->
+    <div style="margin-top: 2rem; display: flex; justify-content: space-between;">
+
+      {% if page.previous %}
+        <a href="{{ page.previous.url }}" style="text-decoration:none; color: var(--accent);">
+          ← {{ page.previous.title }}
+        </a>
+      {% else %}
+        <span></span>
+      {% endif %}
+
+      {% if page.next %}
+        <a href="{{ page.next.url }}" style="text-decoration:none; color: var(--accent);">
+          {{ page.next.title }} →
+        </a>
+      {% endif %}
+
+    </div>
 
   </main>
 
