@@ -17,13 +17,13 @@ title: Blogs
   <p>Browse all blog posts below. New posts appear automatically.</p>
 
   <div class="cards">
-
+      
     {% for post in site.posts %}
-      <div class="card">
+      <a href="{{ post.url }}" class="card blog-card blog-link"
+         data-text="{{ post.title | downcase }} {{ post.excerpt | strip_html | downcase }}">
         <h3>{{ post.title }}</h3>
         <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
-        <p><a href="{{ post.url }}">Read more →</a></p>
-      </div>
+      </a>
     {% endfor %}
 
   </div>
