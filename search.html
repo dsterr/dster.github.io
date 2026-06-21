@@ -5,6 +5,7 @@ title: Search
 
 <h1>Search</h1>
 
+<!-- Search box -->
 <input type="text" id="search-box" placeholder="Search…" style="
   width: 100%;
   padding: 0.75rem 1rem;
@@ -14,16 +15,19 @@ title: Search
   margin-bottom: 1.5rem;
 ">
 
+<!-- Results container -->
 <div id="search-results"></div>
 
+<!-- Lunr.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js"></script>
 
 <script>
-  // Fetch the index JSON
+  // Fetch the JSON index
   fetch('/search.json')
     .then(response => response.json())
-    .then(data => {
-      const documents = data;
+    .then(documents => {
+
+      // Build Lunr index
       const idx = lunr(function () {
         this.ref('url');
         this.field('title');
@@ -35,8 +39,29 @@ title: Search
       const searchBox = document.getElementById('search-box');
       const resultsDiv = document.getElementById('search-results');
 
-      searchBox.addEventListener('input', function () {
-        const query = this.value.trim();
+      // -----------------------------
+      // Auto-populate from ?q=...
+      // -----------------------------
+      const params = new URLSearchParams(window.location.search);
+      const initialQuery = params.get("q");
+
+      if (initialQuery) {
+        searchBox.value = initialQuery;
+        runSearch(initialQuery);
+      }
+
+      // -----------------------------
+      // Live search as user types
+      // -----------------------------
+      searchBox.addEventListener('input', () => {
+        const query = searchBox.value.trim();
+        runSearch(query);
+      });
+
+      // -----------------------------
+      // Search function
+      // -----------------------------
+      function runSearch(query) {
         if (!query) {
           resultsDiv.innerHTML = '';
           return;
@@ -46,13 +71,14 @@ title: Search
 
         resultsDiv.innerHTML = results.map(result => {
           const item = documents.find(d => d.url === result.ref);
+
           return `
-            <div class="card" style="margin-bottom:1rem;">
-              <h3><a href="${item.url}">${item.title}</a></h3>
+            <a href="${item.url}" class="card activity-link" style="margin-bottom:1rem; display:block;">
+              <h3>${item.title}</h3>
               <p>${item.content.substring(0, 150)}...</p>
-            </div>
+            </a>
           `;
         }).join('');
-      });
+      }
     });
 </script>
