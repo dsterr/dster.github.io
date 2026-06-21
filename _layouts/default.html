@@ -23,5 +23,33 @@
     if (year) year.textContent = new Date().getFullYear();
   </script>
 
+  <div id="google_translate_element" style="display:none;"></div>
+
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        {pageLanguage: 'en', autoDisplay: false},
+        'google_translate_element'
+      );
+    }
+  </script>
+  
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  
+  <script>
+    document.querySelectorAll('.translate-dropdown .dropdown-content a')
+      .forEach(item => {
+        item.addEventListener('click', function (e) {
+          e.preventDefault();
+          const lang = this.getAttribute('data-lang');
+          const select = document.querySelector('select.goog-te-combo');
+          if (select) {
+            select.value = lang;
+            select.dispatchEvent(new Event('change'));
+          }
+        });
+      });
+  </script>
+  
 </body>
 </html>
