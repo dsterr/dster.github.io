@@ -24,42 +24,25 @@
     if (year) year.textContent = new Date().getFullYear();
   </script>
 
-  <!-- HIDDEN GOOGLE TRANSLATE ELEMENT -->
-  <div id="google_translate_element" style="display:none;"></div>
+  <!-- GTRANSLATE ENGINE -->
+  <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
 
-  <!-- GOOGLE TRANSLATE ENGINE -->
+  <!-- CUSTOM LANGUAGE SWITCHER -->
   <script>
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement(
-        {pageLanguage: 'en', autoDisplay: false},
-        'google_translate_element'
-      );
-    }
-  </script>
-
-  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-  <!-- CUSTOM DROPDOWN LANGUAGE SWITCHER -->
-  <script>
-    function triggerTranslate(lang) {
-      const interval = setInterval(() => {
-        const select = document.querySelector("select.goog-te-combo");
-        if (select) {
-          select.value = lang;
-          select.dispatchEvent(new Event("change"));
-          clearInterval(interval);
-        }
-      }, 200);
-    }
-  
-    document.querySelectorAll('.translate-dropdown .dropdown-content a')
-      .forEach(item => {
-        item.addEventListener('click', function (e) {
-          e.preventDefault();
-          triggerTranslate(this.getAttribute('data-lang'));
-        });
+    document.querySelectorAll('.gtranslate').forEach(el => {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        const langPair = this.getAttribute('data-lang');
+        window.gtranslateSettings = {
+          default_language: "en",
+          native_language_names: true,
+          detect_browser_language: false
+        };
+        window.GTranslateTranslate(langPair);
       });
+    });
   </script>
 
 </body>
 </html>
+
